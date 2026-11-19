@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>ABC Auto — Мобильная версия (Figma 320px)</title>
+  <link rel="icon" type="image/svg+xml" href="images/logo.svg">
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              red: '#CA0100',
+              redHover: '#B20100',
+              redLight: '#FFF1F1',
+              dark: '#262626',
+              black: '#141414',
+              gray: '#737373',
+              lightGray: '#F5F5F7',
+              border: '#E8E8E8',
+              footer: '#1C1C1E',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          boxShadow: {
+            'card': '0 2px 12px rgba(0, 0, 0, 0.06)',
+            'btn': '0 4px 14px rgba(202, 1, 0, 0.35)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #262626;
+      background-color: #F0F2F5;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+    .mobile-container {
+      max-width: 420px;
+      margin: 0 auto;
+      background-color: #FFFFFF;
+      min-height: 100vh;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+    input[type=range] {
+      -webkit-appearance: none;
+      width: 100%;
+      background: transparent;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 16px;
+      width: 16px;
+      border-radius: 50%;
+      background: #CA0100;
+      cursor: pointer;
+      border: 2px solid #FFFFFF;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+      margin-top: -5px;
+    }
+    input[type=range]::-moz-range-thumb {
+      height: 16px;
+      width: 16px;
+      border-radius: 50%;
+      background: #CA0100;
+      cursor: pointer;
+      border: 2px solid #FFFFFF;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    }
+    input[type=range]::-webkit-slider-runnable-track {
+      width: 100%;
+      height: 6px;
+      cursor: pointer;
+      background: #E5E7EB;
+      border-radius: 9999px;
+    }
+    /* Accordion transition */
+    .accordion-content {
+      transition: max-height 0.3s ease-out, opacity 0.3s ease;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Switcher Bar (Desktop / Mobile Preview Switcher) -->
+  <div class="bg-brand-dark text-white text-[11px] py-2 px-3 sticky top-0 z-50 flex items-center justify-between border-b border-gray-800">
+    <div class="flex items-center space-x-2">
+      <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+      <span class="font-bold">Figma Mobile 320px (node: 1565-45679)</span>
+    </div>
+    <div class="flex items-center space-x-2">
+      <a href="desktop.html" class="px-2.5 py-1 rounded bg-gray-800 hover:bg-gray-700 text-gray-200 transition-colors">
+        <i class="fa-solid fa-desktop mr-1"></i> Desktop
+      </a>
+      <a href="index.html" class="px-2.5 py-1 rounded bg-brand-red text-white font-bold transition-colors">
+        <i class="fa-solid fa-arrows-split-up-and-left mr-1"></i> Адаптив
+      </a>
+    </div>
+  </div>
+
+  <div class="mobile-container">
+
+    <!-- ========================================================================= -->
+    <!-- 1. MOBILE TOP BAR: Phone & Callback button -->
+    <!-- ========================================================================= -->
+    <div class="px-4 py-2.5 border-b border-gray-100 flex items-center justify-between text-xs">
+      <a href="tel:+78005519431" class="font-bold text-brand-dark hover:text-brand-red transition-colors flex items-center gap-1.5">
+        <i class="fa-solid fa-phone text-brand-red text-[11px]"></i>
+        <span>+7 (800) 551-94-31</span>
+      </a>
+      <button onclick="openModal('Обратный звонок')" class="px-3 py-1 bg-brand-red text-white rounded-full text-[10px] font-bold uppercase tracking-wider flex items-center gap-1 shadow-sm">
+        <i class="fa-solid fa-phone-volume text-[9px]"></i>
+        <span>Обратный звонок</span>
+      </button>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- 2. MOBILE HEADER: Menu, Logo, Icons (Heart, Scale, Search) -->
+    <!-- ========================================================================= -->
+    <header class="px-4 py-3 border-b border-gray-100 flex items-center justify-between bg-white sticky top-9 z-40 shadow-xs">
+      <!-- Hamburger Icon -->
+      <button id="mobileMenuToggle" class="w-8 h-8 flex items-center justify-center text-brand-dark hover:text-brand-red transition-colors">
+        <i class="fa-solid fa-bars text-lg"></i>
+      </button>
+
+      <!-- ABC AUTO Logo -->
+      <a href="#" class="flex items-center">
+        <img src="images/logo.svg" alt="ABC AUTO" class="h-8 w-auto">
+      </a>
+
+      <!-- Right Action Icons: Favorites, Compare, Search -->
+      <div class="flex items-center space-x-3 text-brand-dark">
+        <!-- Favorites with badge -->
+        <a href="#catalog" class="relative p-1 hover:text-brand-red transition-colors">
+          <i class="fa-regular fa-heart text-base text-brand-red"></i>
+          <span id="mobileFavBadge" class="absolute -top-1 -right-1.5 w-3.5 h-3.5 bg-brand-red text-white text-[8px] font-bold rounded-full flex items-center justify-center">0</span>
+        </a>
+        <!-- Compare with badge -->
+        <a href="#catalog" class="relative p-1 hover:text-brand-red transition-colors">
+          <i class="fa-solid fa-scale-balanced text-base text-gray-500"></i>
+          <span id="mobileCompareBadge" class="absolute -top-1 -right-1.5 w-3.5 h-3.5 bg-gray-200 text-gray-700 text-[8px] font-bold rounded-full flex items-center justify-center">0</span>
+        </a>
+        <!-- Search icon -->
+        <button onclick="toggleMobileSearch()" class="p-1 text-gray-600 hover:text-brand-red transition-colors">
+          <i class="fa-solid fa-magnifying-glass text-base"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Expandable Search Bar on Mobile -->
+    <div id="mobileSearchBox" class="hidden px-4 py-2.5 bg-gray-50 border-b border-gray-200">
+      <div class="relative">
+        <input type="text" placeholder="Поиск марки или модели..." class="w-full bg-white border border-gray-200 rounded-lg pl-9 pr-3 py-2 text-xs focus:outline-none focus:border-brand-red">
+        <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Menu (Slide-out / Expandable) -->
+    <nav id="mobileDrawer" class="hidden bg-white border-b border-gray-200 px-4 py-4 space-y-2 text-xs font-semibold text-brand-dark shadow-lg">
+      <a href="#catalog" class="block py-2 border-b border-gray-50 hover:text-brand-red">Каталог авто</a>
+      <a href="#catalog" class="block py-2 border-b border-gray-50 hover:text-brand-red">Авто с пробегом</a>
+      <a href="#credit" class="block py-2 border-b border-gray-50 hover:text-brand-red">Кредит и рассрочка</a>
+      <a href="#specials" class="block py-2 border-b border-gray-50 hover:text-brand-red">Спецпредложения</a>
+      <a href="#collections" class="block py-2 border-b border-gray-50 hover:text-brand-red">Наши подборки</a>
+      <a href="#about" class="block py-2 border-b border-gray-50 hover:text-brand-red">О компании</a>
+      <a href="#contacts" class="block py-2 hover:text-brand-red">Контакты</a>
+      <div class="pt-3 flex gap-2">
+        <button onclick="openModal('Подбор авто')" class="flex-1 py-2 bg-brand-red text-white text-[11px] font-bold rounded-lg uppercase">Подобрать авто</button>
+        <button onclick="openModal('Рассчитать кредит')" class="flex-1 py-2 bg-brand-dark text-white text-[11px] font-bold rounded-lg uppercase">Кредит</button>
+      </div>
+    </nav>
+
+    <!-- ========================================================================= -->
+    <!-- 3. MOBILE HERO BANNER -->
+    <!-- ========================================================================= -->
+    <section class="relative bg-gradient-to-b from-[#EFF1F4] via-[#E9ECF0] to-[#E3E6EB] px-4 pt-6 pb-8 overflow-hidden text-center">
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-1.5 bg-brand-red text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide shadow-sm mb-3">
+        <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+        <span>Осталось всего 10 авто!</span>
+      </div>
+
+      <!-- Headline -->
+      <h1 class="text-xl sm:text-2xl font-black text-brand-dark leading-tight tracking-tight mb-1">
+        Грандиозная распродажа <br>тестового парка!
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="text-xs font-semibold text-gray-500 mb-4">
+        Узнай свою цену!
+      </p>
+
+      <!-- 3-Cars Visual Composition -->
+      <div class="relative h-[180px] my-2 flex items-center justify-center">
+        <!-- Skoda Rapid Left Back -->
+        <img src="images/hero-rapid.png" alt="Skoda Rapid" class="absolute left-1 bottom-4 w-[48%] h-auto drop-shadow-md">
+        <!-- SUV Right Back -->
+        <img src="images/hero-ext.png" alt="SUV" class="absolute right-1 bottom-6 w-[52%] h-auto drop-shadow-md">
+        <!-- Kia Rio Red Front Center -->
+        <img src="images/hero-rio.png" alt="Kia Rio Red" class="absolute left-1/2 -translate-x-[42%] bottom-0 w-[78%] h-auto drop-shadow-xl z-10">
+      </div>
+
+      <!-- Pagination Dots (Figma: 1 red, 4 gray) -->
+      <div class="flex items-center justify-center space-x-1.5 pt-2">
+        <span class="w-5 h-2 rounded-full bg-brand-red"></span>
+        <span class="w-2 h-2 rounded-full bg-gray-300"></span>
+        <span class="w-2 h-2 rounded-full bg-gray-300"></span>
+        <span class="w-2 h-2 rounded-full bg-gray-300"></span>
+        <span class="w-2 h-2 rounded-full bg-gray-300"></span>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 4. MOBILE BRANDS GRID (3 Columns - exactly matching node 1565:45679) -->
+    <!-- ========================================================================= -->
+    <section class="px-4 py-6 bg-white border-b border-gray-100">
+      <div class="grid grid-cols-3 gap-y-2.5 gap-x-1 text-[11px] font-semibold text-brand-dark">
+        <a href="#catalog" class="hover:text-brand-red">Kia</a>
+        <a href="#catalog" class="hover:text-brand-red">Mitsubishi</a>
+        <a href="#catalog" class="hover:text-brand-red">Zotye</a>
+
+        <a href="#catalog" class="hover:text-brand-red">Brilliance</a>
+        <a href="#catalog" class="hover:text-brand-red">Renault</a>
+        <a href="#catalog" class="hover:text-brand-red">Volkswagen</a>
+
+        <a href="#catalog" class="hover:text-brand-red">Citroen</a>
+        <a href="#catalog" class="hover:text-brand-red">Toyota</a>
+        <a href="#catalog" class="hover:text-brand-red">CheryExeed</a>
+
+        <a href="#catalog" class="hover:text-brand-red">Ford</a>
+        <a href="#catalog" class="hover:text-brand-red">Chevrolet</a>
+        <a href="#catalog" class="hover:text-brand-red">DW Hower</a>
+
+        <a href="#catalog" class="hover:text-brand-red">Haima</a>
+        <a href="#catalog" class="hover:text-brand-red">FAW</a>
+        <a href="#catalog" class="hover:text-brand-red">Geely</a>
+
+        <a href="#catalog" class="hover:text-brand-red">Lifan</a>
+        <a href="#catalog" class="hover:text-brand-red">Great Wall</a>
+        <a href="#catalog" class="hover:text-brand-red">JAC</a>
+
+        <a href="#catalog" class="hover:text-brand-red">Peugeot</a>
+        <a href="#catalog" class="hover:text-brand-red">Hyundai</a>
+        <a href="#catalog" class="hover:text-brand-red">Nissan</a>
+
+        <a href="#catalog" class="hover:text-brand-red">UAZ</a>
+        <a href="#catalog" class="hover:text-brand-red">Changan</a>
+        <a href="#catalog" class="hover:text-brand-red">SsangYong</a>
+
+        <a href="#catalog" class="hover:text-brand-red">Skoda</a>
+        <a href="#catalog" class="hover:text-brand-red">Datsun</a>
+        <a href="#catalog" class="hover:text-brand-red">Lada</a>
+
+        <a href="#catalog" class="hover:text-brand-red">Chery</a>
+        <a href="#catalog" class="hover:text-brand-red">Foton</a>
+        <a href="#catalog" class="hover:text-brand-red">Opel</a>
+
+        <a href="#catalog" class="hover:text-brand-red">Dongfeng</a>
+        <a href="#catalog" class="hover:text-brand-red">Haval</a>
+        <a href="#catalog" class="hover:text-brand-red">Suzuki</a>
+
+        <a href="#catalog" class="hover:text-brand-red">GAC</a>
+        <a href="#catalog" class="hover:text-brand-red">Mazda</a>
+        <a href="#catalog" class="hover:text-brand-red"></a>
+
+        <a href="#catalog" class="hover:text-brand-red">Honda</a>
+        <a href="#catalog" class="hover:text-brand-red">Ravon</a>
+        <a href="#catalog" class="hover:text-brand-red"></a>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 5. MOBILE QUICK SELECTION WIDGET ("Быстрый подбор авто") -->
+    <!-- ========================================================================= -->
+    <section class="px-4 py-6 bg-white border-b border-gray-100">
+      <div class="bg-gray-50 rounded-2xl p-4 border border-gray-200">
+        <h2 class="text-sm font-bold text-brand-dark mb-3">Быстрый подбор авто</h2>
+
+        <!-- Price Range Slider -->
+        <div class="space-y-1.5 mb-4">
+          <div class="flex items-center justify-between text-xs font-semibold">
+            <span class="text-gray-500">Цена</span>
+            <span id="mobPriceVal" class="text-brand-red font-bold">0 - 500т</span>
+          </div>
+          <input type="range" id="mobPriceRange" min="0" max="3000000" step="100000" value="500000">
+          <div class="flex justify-between text-[8px] text-gray-400 font-medium">
+            <span>0</span>
+            <span>500т</span>
+            <span>800т</span>
+            <span>1.1м</span>
+            <span>1.4м</span>
+            <span>1.7м</span>
+            <span>2м</span>
+            <span>2.3м</span>
+            <span>2.7м</span>
+            <span>3м</span>
+          </div>
+        </div>
+
+        <!-- Body Type Select -->
+        <div class="mb-3">
+          <select class="w-full bg-white border border-gray-200 rounded-xl px-3 py-2.5 text-xs font-medium text-brand-dark focus:outline-none focus:border-brand-red">
+            <option>Тип кузова</option>
+            <option>Седан</option>
+            <option>Внедорожник</option>
+            <option>Хэтчбек</option>
+            <option>Кроссовер</option>
+          </select>
+        </div>
+
+        <!-- Gearbox Select -->
+        <div class="mb-4">
+          <select class="w-full bg-white border border-gray-200 rounded-xl px-3 py-2.5 text-xs font-medium text-brand-dark focus:outline-none focus:border-brand-red">
+            <option>Коробка</option>
+            <option>Автомат</option>
+            <option>Механика</option>
+            <option>Робот</option>
+            <option>Вариатор</option>
+          </select>
+        </div>
+
+        <!-- Big Red Button -->
+        <button onclick="scrollToCatalogMobile()" class="w-full py-3 bg-brand-red hover:bg-brand-redHover text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-btn transition-all">
+          Показать 73
+        </button>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 6. MOBILE CATALOG: "Автомобили в наличии с ПТС" -->
+    <!-- ========================================================================= -->
+    <section id="catalog" class="px-4 py-6 bg-[#F9FAFB]">
+      <h2 class="text-lg font-black text-brand-dark mb-4 leading-tight">
+        Автомобили в наличии с ПТС
+      </h2>
+
+      <!-- Car Card (1-to-1 matching mobile design) -->
+      <div class="bg-white rounded-2xl border border-gray-200 shadow-card p-4 space-y-3">
+        <!-- Top Title & Icons -->
+        <div class="flex items-start justify-between">
+          <div>
+            <h3 class="font-bold text-base text-brand-dark">Skoda Octavia</h3>
+            <p class="text-[11px] text-gray-500 font-medium">1.6 MPI MT Active</p>
+          </div>
+          <div class="flex items-center space-x-2">
+            <button onclick="toggleFavMob(this)" class="p-1 text-gray-400 hover:text-brand-red">
+              <i class="fa-regular fa-heart text-sm"></i>
+            </button>
+            <button onclick="toggleCompareMob(this)" class="p-1 text-gray-400 hover:text-brand-dark">
+              <i class="fa-solid fa-scale-balanced text-sm"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Promo Badges -->
+        <div class="flex items-center gap-2">
+          <span class="bg-brand-red text-white text-[9px] font-bold px-2 py-0.5 rounded">
+            Предложение дня
+          </span>
+          <span class="text-[10px] font-bold text-brand-red">
+            Выгода до 300 000 ₽
+          </span>
+        </div>
+
+        <!-- Gifts list + Car image -->
+        <div class="grid grid-cols-12 gap-1 items-center">
+          <div class="col-span-5 space-y-1.5 text-[9px] font-semibold text-gray-600">
+            <div class="flex items-center gap-1">
+              <i class="fa-solid fa-circle-check text-brand-red text-[10px]"></i>
+              <span>Оборудование в подарок</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <i class="fa-solid fa-circle-check text-brand-red text-[10px]"></i>
+              <span>КАСКО в подарок</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <i class="fa-solid fa-circle-check text-brand-red text-[10px]"></i>
+              <span>Резина в подарок</span>
+            </div>
+          </div>
+          <div class="col-span-7 flex justify-center">
+            <img src="images/car-octavia.png" alt="Skoda Octavia" class="w-full max-h-[110px] object-contain">
+          </div>
+        </div>
+
+        <!-- Price -->
+        <div class="border-t border-gray-100 pt-2 flex items-baseline justify-between">
+          <div>
+            <span class="text-[10px] text-gray-400">от</span>
+            <span class="text-lg font-black text-brand-dark">1 615 000 ₽</span>
+          </div>
+          <span class="text-[10px] font-semibold text-gray-500">Кредит от 11 000 ₽/мес.</span>
+        </div>
+
+        <!-- Specs Icons Row -->
+        <div class="grid grid-cols-4 gap-1 text-center py-1">
+          <div class="bg-gray-50 rounded py-1 px-0.5">
+            <span class="block text-[10px] font-bold text-brand-dark">110 л.с.</span>
+            <span class="block text-[8px] text-gray-400">мощность</span>
+          </div>
+          <div class="bg-gray-50 rounded py-1 px-0.5">
+            <span class="block text-[10px] font-bold text-brand-dark">6.0 л</span>
+            <span class="block text-[8px] text-gray-400">расход</span>
+          </div>
+          <div class="bg-gray-50 rounded py-1 px-0.5">
+            <span class="block text-[10px] font-bold text-brand-dark">192 км/ч</span>
+            <span class="block text-[8px] text-gray-400">макс. ск.</span>
+          </div>
+          <div class="bg-gray-50 rounded py-1 px-0.5">
+            <span class="block text-[10px] font-bold text-brand-dark">10.6 с</span>
+            <span class="block text-[8px] text-gray-400">до 100</span>
+          </div>
+        </div>
+
+        <!-- Buttons: Full width Red "Резерв онлайн" -->
+        <button onclick="openModal('Резерв онлайн - Skoda Octavia')" class="w-full py-2.5 bg-brand-red hover:bg-brand-redHover text-white text-xs font-bold uppercase rounded-xl shadow-btn transition-colors">
+          Резерв онлайн
+        </button>
+
+        <!-- Two small buttons: "Купить" & "Подробнее" -->
+        <div class="grid grid-cols-2 gap-2">
+          <button onclick="openModal('Купить - Skoda Octavia')" class="py-2 bg-brand-dark hover:bg-black text-white text-[11px] font-bold uppercase rounded-lg">
+            Купить
+          </button>
+          <button onclick="openModal('Подробнее - Skoda Octavia')" class="py-2 bg-gray-100 hover:bg-gray-200 text-brand-dark text-[11px] font-bold uppercase rounded-lg">
+            Подробнее
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 7. MOBILE "НАШИ ПОДБОРКИ" -->
+    <!-- ========================================================================= -->
+    <section id="collections" class="px-4 py-6 bg-white">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-base font-bold text-brand-dark">Наши подборки</h2>
+        <span class="bg-brand-red text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase">
+          Все подборки
+        </span>
+      </div>
+
+      <!-- Photographic Card with Red "Посмотреть" Button -->
+      <div class="relative h-[240px] rounded-2xl overflow-hidden shadow-card group">
+        <img src="images/collection-family.jpg" alt="Семейные автомобили" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+        <div class="absolute bottom-4 left-4 right-4 flex items-end justify-between">
+          <h3 class="text-white text-base font-bold leading-tight drop-shadow-md">
+            Семейные<br>автомобили
+          </h3>
+          <button onclick="openModal('Подборка: Семейные автомобили')" class="px-4 py-2 bg-brand-red text-white text-[10px] font-bold uppercase rounded-lg shadow-md">
+            Посмотреть
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 8. MOBILE COMPETITOR PROMO BANNER (Boxing Glove) -->
+    <!-- ========================================================================= -->
+    <section class="px-4 py-4 bg-white">
+      <div class="relative rounded-2xl bg-gradient-to-b from-[#2A2A2A] via-[#1E1E1E] to-[#141414] text-white p-5 overflow-hidden shadow-xl text-center">
+        <!-- Boxing Glove visual -->
+        <div class="flex justify-center -mt-2 mb-2">
+          <img src="images/glove.png" alt="Скидки" class="max-h-[140px] w-auto drop-shadow-xl">
+        </div>
+
+        <h2 class="text-base font-black uppercase tracking-tight leading-tight mb-1">
+          Перебьем предложения от конкурентов!
+        </h2>
+        <p class="text-[11px] text-gray-300 mb-4">
+          Скидки <span class="text-brand-red font-bold">до 300 000 ₽</span> на стоимость автомобиля
+        </p>
+
+        <form onsubmit="handleFormSubmitMob(event, 'Перебьем предложения')" class="space-y-2.5">
+          <input type="tel" required placeholder="Ваш телефон" class="w-full bg-white text-brand-dark px-3.5 py-2.5 rounded-xl text-xs font-medium placeholder-gray-400 focus:outline-none">
+          <button type="submit" class="w-full py-2.5 bg-brand-red hover:bg-brand-redHover text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-btn transition-all">
+            Получить предложение
+          </button>
+          <p class="text-[8px] text-gray-400 leading-tight">
+            Нажимая кнопку, вы соглашаетесь с условиями обработки персональных данных
+          </p>
+        </form>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 9. MOBILE SPECIAL OFFERS ("Спецпредложения") -->
+    <!-- ========================================================================= -->
+    <section id="specials" class="px-4 py-6 bg-[#F9FAFB]">
+      <h2 class="text-base font-bold text-brand-dark mb-4">Спецпредложения</h2>
+
+      <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-card">
+        <div class="relative h-[160px]">
+          <img src="images/offer-1.jpg" alt="Первый автомобиль" class="w-full h-full object-cover">
+          <span class="absolute top-3 left-3 bg-brand-red text-white text-[9px] font-bold px-2 py-0.5 rounded uppercase">
+            10% по льготной ставке
+          </span>
+        </div>
+        <div class="p-4">
+          <h3 class="font-bold text-sm text-brand-dark mb-1">Первый автомобиль</h3>
+          <p class="text-[11px] text-gray-500 mb-3">Государственная программа поддержки для начинающих водителей</p>
+          <button onclick="openModal('Спецпредложение: Первый автомобиль')" class="w-full py-2 border border-gray-200 text-brand-dark text-xs font-bold uppercase rounded-lg">
+            Узнать больше
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 10. MOBILE LOAN CALCULATOR ("Заявка на автокредит") -->
+    <!-- ========================================================================= -->
+    <section id="credit" class="px-4 py-6 bg-white">
+      <h2 class="text-base font-bold text-brand-dark mb-3">Заявка на автокредит</h2>
+
+      <div class="bg-gray-50 rounded-2xl p-4 border border-gray-200 space-y-3">
+        <!-- Selects -->
+        <select class="w-full bg-white border border-gray-200 rounded-xl px-3 py-2 text-xs font-semibold text-brand-dark">
+          <option>Skoda</option>
+          <option>KIA</option>
+          <option>Hyundai</option>
+        </select>
+        <select class="w-full bg-white border border-gray-200 rounded-xl px-3 py-2 text-xs font-semibold text-brand-dark">
+          <option>Octavia</option>
+          <option>Rapid</option>
+        </select>
+        <select class="w-full bg-white border border-gray-200 rounded-xl px-3 py-2 text-xs font-semibold text-brand-dark">
+          <option>1.6 MPI MT Active</option>
+        </select>
+
+        <!-- Car Price Box -->
+        <div class="bg-white p-3 rounded-xl border border-gray-200 text-center">
+          <div class="flex items-center justify-between">
+            <span class="text-sm font-black text-brand-dark">1 615 000 ₽</span>
+            <span class="text-xs font-bold text-brand-red">Выгода 300 000 ₽</span>
+          </div>
+          <div class="my-2 flex justify-center">
+            <img src="images/car-octavia.png" alt="Skoda Octavia" class="max-h-[100px] w-auto">
+          </div>
+          
+          <!-- Split Bar -->
+          <div class="grid grid-cols-2 gap-2 text-center text-[10px]">
+            <div class="bg-brand-red text-white py-1 rounded-md font-bold">50 000 ₽ (Взнос)</div>
+            <div class="bg-brand-dark text-white py-1 rounded-md font-bold">1 565 000 ₽ (Остаток)</div>
+          </div>
+        </div>
+
+        <!-- Loan Amount Slider -->
+        <div class="space-y-1">
+          <div class="flex justify-between text-xs font-bold">
+            <span class="text-gray-500">Сумма кредита, руб</span>
+            <span id="mobCalcSumVal" class="text-brand-dark font-black">1 100 000 ₽</span>
+          </div>
+          <input type="range" id="mobCalcSum" min="100000" max="3000000" step="50000" value="1100000">
+          <div class="flex justify-between text-[8px] text-gray-400">
+            <span>0</span><span>500т</span><span>800т</span><span>1.1м</span><span>1.4м</span><span>1.7м</span><span>2м</span><span>2.5м</span><span>3м</span>
+          </div>
+        </div>
+
+        <!-- Loan Term Slider -->
+        <div class="space-y-1">
+          <div class="flex justify-between text-xs font-bold">
+            <span class="text-gray-500">Срок кредита, мес.</span>
+            <span id="mobCalcTermVal" class="text-brand-dark font-black">36 мес.</span>
+          </div>
+          <input type="range" id="mobCalcTerm" min="6" max="84" step="6" value="36">
+          <div class="flex justify-between text-[8px] text-gray-400">
+            <span>6</span><span>12</span><span>24</span><span>36</span><span>48</span><span>60</span><span>72</span><span>84</span>
+          </div>
+        </div>
+
+        <!-- Application Subcard -->
+        <div class="bg-white p-4 rounded-xl border border-gray-200 space-y-2 mt-4 text-center">
+          <h3 class="text-xs font-bold text-brand-dark">Получить выгоду</h3>
+          <p class="text-lg font-black text-brand-red">300 000 ₽</p>
+          <form onsubmit="handleFormSubmitMob(event, 'Кредитная заявка')" class="space-y-2">
+            <input type="text" required placeholder="Ваше имя" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-xs">
+            <input type="tel" required placeholder="Ваш телефон" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-xs">
+            <button type="submit" class="w-full py-2.5 bg-brand-red text-white text-xs font-bold uppercase rounded-lg shadow-btn">
+              Получить предложение
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 11. MOBILE BANK PARTNERS -->
+    <!-- ========================================================================= -->
+    <section class="px-4 py-6 bg-white border-t border-gray-100">
+      <h2 class="text-sm font-bold text-brand-dark mb-3">Банки-партнеры</h2>
+      <div class="grid grid-cols-2 gap-2">
+        <div class="bg-gray-50 rounded-xl p-3 flex items-center justify-center h-16 border border-gray-100">
+          <img src="images/bank-1.png" alt="Альфа" class="max-h-8 w-auto">
+        </div>
+        <div class="bg-gray-50 rounded-xl p-3 flex items-center justify-center h-16 border border-gray-100">
+          <img src="images/bank-2.png" alt="ВСК" class="max-h-8 w-auto">
+        </div>
+        <div class="bg-gray-50 rounded-xl p-3 flex items-center justify-center h-16 border border-gray-100">
+          <img src="images/bank-3.png" alt="Совкомбанк" class="max-h-8 w-auto">
+        </div>
+        <div class="bg-gray-50 rounded-xl p-3 flex items-center justify-center h-16 border border-gray-100">
+          <img src="images/bank-4.png" alt="Росгосстрах" class="max-h-8 w-auto">
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 12. MOBILE "НАМ ДОВЕРЯЮТ" -->
+    <!-- ========================================================================= -->
+    <section class="px-4 py-6 bg-[#F9FAFB]">
+      <h2 class="text-sm font-bold text-brand-dark mb-3">Нам доверяют</h2>
+
+      <div class="space-y-3">
+        <!-- Review card -->
+        <div class="bg-white rounded-xl p-3.5 border border-gray-200 flex items-center justify-between">
+          <div>
+            <span class="block text-xs font-bold text-gray-500">Сайт отзовик</span>
+            <span class="block text-[11px] text-gray-400">Рекомендуют 90%</span>
+            <div class="flex text-amber-400 text-xs mt-0.5">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+            </div>
+          </div>
+          <span class="w-9 h-7 rounded bg-emerald-500 text-white font-extrabold text-xs flex items-center justify-center">4.5</span>
+        </div>
+
+        <!-- Yandex Maps Card -->
+        <div class="bg-white rounded-xl p-3.5 border border-gray-200 flex items-center justify-between">
+          <div class="flex items-center space-x-3">
+            <img src="images/yandex-maps.png" alt="Яндекс" class="h-7 w-auto">
+            <div>
+              <span class="block text-[10px] text-gray-400">Рекомендуют 90%</span>
+              <div class="flex text-amber-400 text-xs">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+              </div>
+            </div>
+          </div>
+          <span class="w-10 h-8 rounded-lg bg-emerald-500 text-white font-extrabold text-sm flex items-center justify-center">4.5</span>
+        </div>
+
+        <!-- Google Maps Card -->
+        <div class="bg-white rounded-xl p-3.5 border border-gray-200 flex items-center justify-between">
+          <div class="flex items-center space-x-3">
+            <img src="images/google-maps.png" alt="Google" class="h-7 w-auto">
+            <div>
+              <span class="block text-[10px] text-gray-400">Рекомендуют 90%</span>
+              <div class="flex text-amber-400 text-xs">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+            </div>
+          </div>
+          <span class="w-10 h-8 rounded-lg bg-emerald-500 text-white font-extrabold text-sm flex items-center justify-center">4.5</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 13. MOBILE VIDEO REVIEW ("Отзывы") -->
+    <!-- ========================================================================= -->
+    <section class="px-4 py-6 bg-white">
+      <h2 class="text-sm font-bold text-brand-dark mb-3">Отзывы</h2>
+
+      <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-card">
+        <div class="relative h-44 bg-gray-900 flex items-center justify-center cursor-pointer" onclick="openModal('Видео отзыв')">
+          <img src="images/collection-family.jpg" alt="Отзыв" class="w-full h-full object-cover opacity-60">
+          <button class="w-12 h-12 rounded-full bg-brand-red text-white flex items-center justify-center shadow-lg z-10">
+            <i class="fa-solid fa-play ml-1"></i>
+          </button>
+        </div>
+        <div class="p-4">
+          <h3 class="font-bold text-sm text-brand-dark">Сергей Васильев</h3>
+          <p class="text-xs text-gray-600 mt-1 leading-relaxed">
+            «Я находился в салоне ALTERA, всем советую, хороший коллектив, добрые люди, приветствуют, это не обман, вам гарантия 100% лично, честно от меня, приезжайте!»
+          </p>
+          <button class="inline-flex items-center gap-1 text-xs font-bold text-brand-red mt-2.5">
+            <span>Подробнее</span>
+            <i class="fa-solid fa-chevron-down text-[10px]"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 14. MOBILE ABOUT COMPANY ("О компании") -->
+    <!-- ========================================================================= -->
+    <section id="about" class="px-4 py-6 bg-[#F9FAFB] text-center">
+      <h2 class="text-base font-bold text-brand-dark mb-2">О компании</h2>
+      <p class="text-xs text-gray-600 leading-relaxed mb-4 text-left">
+        Мы располагаем огромной торговой площадкой более 5000 квадратных метров, у нас в наличии не менее 200 автомобилей как отечественного, так и иностранного производства. В штате автосалона «ABC Auto» работают настоящие профессионалы.
+      </p>
+      <div class="relative rounded-2xl overflow-hidden shadow-lg cursor-pointer" onclick="openModal('Видео о компании')">
+        <img src="images/about-team.jpg" alt="Команда" class="w-full h-auto">
+        <button class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-brand-red text-white flex items-center justify-center shadow-lg">
+          <i class="fa-solid fa-play ml-1"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 15. MOBILE BLOG ("Блог") -->
+    <!-- ========================================================================= -->
+    <section class="px-4 py-6 bg-white">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-base font-bold text-brand-dark">Блог</h2>
+        <span class="bg-brand-red text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase">
+          Все статьи
+        </span>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-card">
+        <div class="relative h-40">
+          <img src="images/blog-car.jpg" alt="Блог" class="w-full h-full object-cover">
+          <span class="absolute bottom-2 left-2 bg-black/60 text-white text-[9px] px-2 py-0.5 rounded">23 сентября</span>
+        </div>
+        <div class="p-3.5">
+          <h3 class="font-bold text-xs text-brand-dark leading-snug">
+            Тест Skoda Karoq Scout – городской ходячик или настоящий скаут
+          </h3>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 16. MOBILE MAP ("Как до нас добраться") -->
+    <!-- ========================================================================= -->
+    <section id="contacts" class="px-4 py-6 bg-[#F9FAFB]">
+      <div class="relative rounded-2xl overflow-hidden border border-gray-200 shadow-md mb-3 h-[200px]">
+        <img src="images/map-bg.jpg" alt="Карта" class="w-full h-full object-cover">
+        <!-- Location Pin -->
+        <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-brand-red text-3xl animate-bounce">
+          <i class="fa-solid fa-location-dot drop-shadow-lg"></i>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl p-4 border border-gray-200 space-y-2.5 text-xs">
+        <div class="flex items-center space-x-2">
+          <i class="fa-solid fa-phone text-brand-red"></i>
+          <a href="tel:+78005519431" class="font-bold text-brand-dark">+7 (800) 551-94-31</a>
+        </div>
+        <div class="flex items-center space-x-2">
+          <i class="fa-solid fa-phone text-brand-red"></i>
+          <a href="tel:+74952921867" class="font-bold text-brand-dark">+7 (495) 292-18-67</a>
+        </div>
+        <div class="flex items-center space-x-2 text-gray-600">
+          <i class="fa-regular fa-clock text-gray-400"></i>
+          <span>с 09:00 до 21:00</span>
+        </div>
+        <div class="flex items-center space-x-2 text-gray-600">
+          <i class="fa-solid fa-location-dot text-brand-red"></i>
+          <span>Россия, Москва, 38KM МКАД, 6Бс1</span>
+        </div>
+        <button onclick="openModal('Маршрут')" class="w-full py-2.5 bg-brand-red text-white text-xs font-bold uppercase rounded-xl shadow-btn mt-2">
+          Как до нас добраться
+        </button>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 17. MOBILE SEO TABS ("Об автосалоне ABC") -->
+    <!-- ========================================================================= -->
+    <section class="px-4 py-6 bg-white border-t border-gray-100">
+      <div class="flex space-x-6 border-b border-gray-200 text-xs font-bold mb-4">
+        <button onclick="switchTabMob('mobTab1', this)" class="mob-tab-btn pb-2 text-brand-red border-b-2 border-brand-red">Автосалон</button>
+        <button onclick="switchTabMob('mobTab2', this)" class="mob-tab-btn pb-2 text-gray-400 border-b-2 border-transparent">Трейд-ин</button>
+        <button onclick="switchTabMob('mobTab3', this)" class="mob-tab-btn pb-2 text-gray-400 border-b-2 border-transparent">Покупка</button>
+      </div>
+
+      <div id="mobTab1" class="mob-tab-content space-y-2 text-xs text-gray-600 leading-relaxed">
+        <h3 class="font-bold text-sm text-brand-dark">Об автосалоне ABC</h3>
+        <p>
+          Автосалон «ABC Auto» — официальный дилер популярных мировых автомобильных марок в Москве. Мы предоставляем комплексный спектр услуг по подбору, покупке, гарантийному обслуживанию и автокредитованию.
+        </p>
+      </div>
+      <div id="mobTab2" class="mob-tab-content hidden space-y-2 text-xs text-gray-600 leading-relaxed">
+        <h3 class="font-bold text-sm text-brand-dark">Программа Трейд-ин</h3>
+        <p>
+          Быстрый обмен старого авто на новый со скидкой до 150 000 рублей всего за 1 час.
+        </p>
+      </div>
+      <div id="mobTab3" class="mob-tab-content hidden space-y-2 text-xs text-gray-600 leading-relaxed">
+        <h3 class="font-bold text-sm text-brand-dark">Условия покупки</h3>
+        <p>
+          100% юридическая чистота, оформление кредита и страховки на месте в день обращения.
+        </p>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 18. MOBILE FOOTER (Figma node 1565:45679: "меню в футере свернуто") -->
+    <!-- ========================================================================= -->
+    <footer class="bg-brand-footer text-white pt-6 pb-12 px-4">
+      
+      <!-- Top Links Bar -->
+      <div class="space-y-2 pb-5 border-b border-gray-800 text-xs font-bold uppercase tracking-wider text-gray-300">
+        <a href="#catalog" class="block hover:text-brand-red">Каталог авто</a>
+        <a href="#catalog" class="block hover:text-brand-red">Авто с пробегом</a>
+        <a href="#credit" class="block hover:text-brand-red">Кредит и рассрочка</a>
+        <a href="#specials" class="block hover:text-brand-red">Спецпредложения</a>
+        <a href="#credit" class="block hover:text-brand-red">Такси в кредит</a>
+      </div>
+
+      <!-- Collapsible Accordion 1: Каталог авто / Подборки -->
+      <div class="py-4 border-b border-gray-800">
+        <button onclick="toggleAccordion('acc1')" class="w-full flex items-center justify-between text-xs font-bold uppercase tracking-wider text-white">
+          <span>Каталог авто / Подборки</span>
+          <i id="acc1Icon" class="fa-solid fa-chevron-down text-[10px] text-gray-400 transition-transform"></i>
+        </button>
+        <div id="acc1" class="accordion-content max-h-0 pt-0 text-[11px] text-gray-400 space-y-2">
+          <div class="grid grid-cols-2 gap-y-1.5 pt-3">
+            <a href="#catalog" class="hover:text-white">Kia</a>
+            <a href="#catalog" class="hover:text-white">Changan</a>
+            <a href="#catalog" class="hover:text-white">Hyundai</a>
+            <a href="#catalog" class="hover:text-white">Chery</a>
+            <a href="#catalog" class="hover:text-white">Skoda</a>
+            <a href="#catalog" class="hover:text-white">CheryExeed</a>
+            <a href="#catalog" class="hover:text-white">Volkswagen</a>
+            <a href="#catalog" class="hover:text-white">Chevrolet</a>
+            <a href="#catalog" class="hover:text-white">Toyota</a>
+            <a href="#catalog" class="hover:text-white">Citroen</a>
+            <a href="#catalog" class="hover:text-white">Brilliance</a>
+            <a href="#catalog" class="hover:text-white">Datsun</a>
+          </div>
+          <button class="w-full mt-2 py-2 border border-gray-700 text-gray-300 rounded-lg text-[10px] font-bold uppercase">
+            Показать ещё
+          </button>
+        </div>
+      </div>
+
+      <!-- Collapsible Accordion 2: Кредит и рассрочка -->
+      <div class="py-4 border-b border-gray-800">
+        <button onclick="toggleAccordion('acc2')" class="w-full flex items-center justify-between text-xs font-bold uppercase tracking-wider text-white">
+          <span>Кредит и рассрочка</span>
+          <i id="acc2Icon" class="fa-solid fa-chevron-down text-[10px] text-gray-400 transition-transform"></i>
+        </button>
+        <div id="acc2" class="accordion-content max-h-0 pt-0 text-[11px] text-gray-400 space-y-1.5">
+          <div class="pt-3 space-y-1.5">
+            <a href="#credit" class="block hover:text-white">Экспресс-кредит</a>
+            <a href="#credit" class="block hover:text-white">Семейный автомобиль</a>
+            <a href="#credit" class="block hover:text-white">Первый автомобиль</a>
+            <a href="#credit" class="block hover:text-white">Работникам медицины</a>
+            <a href="#credit" class="block hover:text-white">Рассрочка</a>
+            <a href="#credit" class="block hover:text-white">Трейд-ин</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Collapsible Accordion 3: Контакты -->
+      <div class="py-4 border-b border-gray-800">
+        <button onclick="toggleAccordion('acc3')" class="w-full flex items-center justify-between text-xs font-bold uppercase tracking-wider text-white">
+          <span>Контакты</span>
+          <i id="acc3Icon" class="fa-solid fa-chevron-down text-[10px] text-gray-400 transition-transform"></i>
+        </button>
+        <div id="acc3" class="accordion-content max-h-0 pt-0 text-[11px] text-gray-400 space-y-2">
+          <div class="pt-3 space-y-2">
+            <div class="flex items-center space-x-2">
+              <i class="fa-solid fa-phone text-brand-red"></i>
+              <a href="tel:+78005519431" class="text-white font-bold">+7 (800) 551-94-31</a>
+            </div>
+            <div class="flex items-center space-x-2">
+              <i class="fa-solid fa-phone text-brand-red"></i>
+              <a href="tel:+74952921867" class="text-white font-bold">+7 (495) 292-18-67</a>
+            </div>
+            <div class="flex items-center space-x-2">
+              <i class="fa-regular fa-clock text-gray-400"></i>
+              <span>с 09:00 до 21:00</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <i class="fa-solid fa-location-dot text-brand-red"></i>
+              <span>38KM МКАД, 6Бс1</span>
+            </div>
+            <a href="#contacts" class="text-brand-red underline block">Схема проезда</a>
+            
+            <select class="w-full bg-[#2A2A2E] text-white border border-gray-700 rounded-lg px-3 py-2 text-xs mt-2">
+              <option>Москва</option>
+              <option>Санкт-Петербург</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Yandex Rating -->
+      <div class="my-5 flex items-center justify-between bg-[#242426] p-3 rounded-xl border border-gray-800">
+        <div class="flex items-center space-x-2">
+          <div class="flex text-amber-400 text-xs">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <span class="font-bold text-white text-sm">5.0</span>
+        </div>
+        <span class="text-[10px] text-gray-400">Рейтинг Яндекс</span>
+      </div>
+
+      <!-- Copyright & Legal -->
+      <div class="text-[10px] text-gray-500 space-y-2">
+        <p>© 2021 Автосалон «ABC AUTO». Официальный дилер.</p>
+        <p class="leading-relaxed">
+          Сайт носит исключительно информационный характер и не является публичной офертой, определяемой положениями ст. 437 (2) ГК РФ.
+        </p>
+      </div>
+
+      <!-- Models Cloud Tags (Collapsed text) -->
+      <div class="mt-4 pt-4 border-t border-gray-800 text-[9px] text-gray-600 space-y-1.5 leading-relaxed">
+        <p><strong class="text-gray-400">KIA:</strong> Picanto (2020), Sorento 2019, Sportage New, Rio 2019, Pro Ceed, K5, Seltos, XCeed, Stinger.</p>
+        <p><strong class="text-gray-400">HYUNDAI:</strong> i30, Solaris, Santa Fe, Tucson, Elantra, Sonata, Creta, Palisade.</p>
+        <p><strong class="text-gray-400">SKODA:</strong> Octavia, Kodiaq, Rapid, Superb, Karoq.</p>
+        <p><strong class="text-gray-400">VOLKSWAGEN:</strong> Polo, Tiguan, Passat, Touareg, Jetta.</p>
+        <p><strong class="text-gray-400">АВТО ПОД ТАКСИ:</strong> Hyundai Solaris, Skoda Octavia, VW Polo.</p>
+      </div>
+
+    </footer>
+
+  </div>
+
+  <!-- Mobile Bottom Sticky Floating CTA Bar -->
+  <div class="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-gray-200 py-2.5 px-4 max-w-[420px] mx-auto flex items-center justify-between gap-3 shadow-2xl">
+    <a href="tel:+78005519431" class="flex-1 py-2.5 border border-brand-red text-brand-red font-bold text-xs uppercase text-center rounded-xl flex items-center justify-center gap-1.5">
+      <i class="fa-solid fa-phone text-xs"></i>
+      <span>Позвонить</span>
+    </a>
+    <button onclick="openModal('Быстрый подбор авто')" class="flex-1 py-2.5 bg-brand-red hover:bg-brand-redHover text-white font-bold text-xs uppercase text-center rounded-xl shadow-btn">
+      Подобрать авто
+    </button>
+  </div>
+
+  <!-- Shared Lead Modal -->
+  <div id="mobModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-sm w-full p-6 shadow-2xl relative">
+      <button onclick="closeModal()" class="absolute right-4 top-4 w-7 h-7 rounded-full bg-gray-100 text-gray-500 flex items-center justify-center">
+        <i class="fa-solid fa-xmark text-xs"></i>
+      </button>
+      <span class="text-brand-red text-[10px] font-bold uppercase tracking-wider block mb-1">Онлайн заявка</span>
+      <h3 id="mobModalTitle" class="text-lg font-black text-brand-dark mb-1">Обратный звонок</h3>
+      <p class="text-[11px] text-gray-500 mb-4">Перезвоним в течение 5 минут</p>
+      <form onsubmit="handleFormSubmitMob(event, 'Модальная форма')" class="space-y-3">
+        <input type="text" required placeholder="Ваше имя" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2.5 text-xs">
+        <input type="tel" required placeholder="+7 (___) ___-__-__" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2.5 text-xs">
+        <button type="submit" class="w-full py-3 bg-brand-red text-white text-xs font-bold uppercase rounded-xl shadow-btn">
+          Отправить заявку
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="mobToast" class="fixed bottom-16 left-4 right-4 z-50 bg-brand-dark text-white px-4 py-3 rounded-xl shadow-2xl text-xs font-semibold text-center transform translate-y-24 opacity-0 transition-all duration-300 max-w-[380px] mx-auto">
+    <span id="mobToastMsg">Заявка принята!</span>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // Drawer
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    mobileMenuToggle?.addEventListener('click', () => {
+      mobileDrawer.classList.toggle('hidden');
+    });
+
+    // Search
+    function toggleMobileSearch() {
+      document.getElementById('mobileSearchBox')?.classList.toggle('hidden');
+    }
+
+    // Favorites & Compare
+    let favMob = 0;
+    let compMob = 0;
+    function toggleFavMob(btn) {
+      const icon = btn.querySelector('i');
+      if (icon.classList.contains('fa-regular')) {
+        icon.classList.replace('fa-regular', 'fa-solid');
+        btn.classList.add('text-brand-red');
+        favMob++;
+        showToastMob('Добавлено в избранное');
+      } else {
+        icon.classList.replace('fa-solid', 'fa-regular');
+        btn.classList.remove('text-brand-red');
+        favMob = Math.max(0, favMob - 1);
+        showToastMob('Удалено из избранного');
+      }
+      document.getElementById('mobileFavBadge').textContent = favMob;
+    }
+
+    function toggleCompareMob(btn) {
+      if (!btn.classList.contains('text-brand-red')) {
+        btn.classList.add('text-brand-red');
+        compMob++;
+        showToastMob('Добавлено в сравнение');
+      } else {
+        btn.classList.remove('text-brand-red');
+        compMob = Math.max(0, compMob - 1);
+        showToastMob('Удалено из сравнения');
+      }
+      document.getElementById('mobileCompareBadge').textContent = compMob;
+    }
+
+    // Quick selection price
+    const mobPriceRange = document.getElementById('mobPriceRange');
+    const mobPriceVal = document.getElementById('mobPriceVal');
+    mobPriceRange?.addEventListener('input', (e) => {
+      const val = Number(e.target.value);
+      mobPriceVal.textContent = 'до ' + (val / 1000).toFixed(0) + 'т';
+    });
+
+    function scrollToCatalogMobile() {
+      document.getElementById('catalog')?.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Accordions
+    function toggleAccordion(id) {
+      const el = document.getElementById(id);
+      const icon = document.getElementById(id + 'Icon');
+      if (!el) return;
+      if (el.style.maxHeight && el.style.maxHeight !== '0px') {
+        el.style.maxHeight = '0px';
+        icon?.classList.remove('rotate-180');
+      } else {
+        el.style.maxHeight = el.scrollHeight + 100 + 'px';
+        icon?.classList.add('rotate-180');
+      }
+    }
+
+    // Calculator
+    const mobCalcSum = document.getElementById('mobCalcSum');
+    const mobCalcTerm = document.getElementById('mobCalcTerm');
+    const mobCalcSumVal = document.getElementById('mobCalcSumVal');
+    const mobCalcTermVal = document.getElementById('mobCalcTermVal');
+    function updateMobCalc() {
+      if (mobCalcSumVal && mobCalcSum) mobCalcSumVal.textContent = Number(mobCalcSum.value).toLocaleString('ru-RU') + ' ₽';
+      if (mobCalcTermVal && mobCalcTerm) mobCalcTermVal.textContent = mobCalcTerm.value + ' мес.';
+    }
+    mobCalcSum?.addEventListener('input', updateMobCalc);
+    mobCalcTerm?.addEventListener('input', updateMobCalc);
+
+    // SEO tabs
+    function switchTabMob(tabId, btn) {
+      document.querySelectorAll('.mob-tab-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.mob-tab-btn').forEach(b => {
+        b.classList.remove('text-brand-red', 'border-brand-red');
+        b.classList.add('text-gray-400', 'border-transparent');
+      });
+      document.getElementById(tabId)?.classList.remove('hidden');
+      btn.classList.add('text-brand-red', 'border-brand-red');
+      btn.classList.remove('text-gray-400', 'border-transparent');
+    }
+
+    // Modal
+    const modal = document.getElementById('mobModal');
+    const modalTitle = document.getElementById('mobModalTitle');
+    function openModal(title) {
+      if (modalTitle) modalTitle.textContent = title;
+      modal?.classList.remove('hidden');
+      modal?.classList.add('flex');
+    }
+    function closeModal() {
+      modal?.classList.add('hidden');
+      modal?.classList.remove('flex');
+    }
+    modal?.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    // Form & Toast
+    function handleFormSubmitMob(e, title) {
+      e.preventDefault();
+      closeModal();
+      showToastMob('Спасибо! Менеджер свяжется с вами.');
+      e.target.reset();
+    }
+    function showToastMob(msg) {
+      const toast = document.getElementById('mobToast');
+      const toastMsg = document.getElementById('mobToastMsg');
+      if (!toast || !toastMsg) return;
+      toastMsg.textContent = msg;
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+      }, 3000);
+    }
+  </script>
+
+</body>
+</html>
